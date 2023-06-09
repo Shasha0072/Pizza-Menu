@@ -60,9 +60,9 @@ const Pizza = (props) => {
 
 const Header = () => {
   return (
-    <>
+    <header className="header">
       <h1>Fast React Pizza Co.</h1>
-    </>
+    </header>
   );
 };
 
@@ -105,7 +105,9 @@ const Footer = () => {
             <button className="btn">Order</button>
           </div>
         ) : (
-          <p>We are happy to welcome you between 12 and 22</p>
+          <p>
+            We are happy to welcome you between {openHour}:00 and {closeHour}:00
+          </p>
         )}
       </footer>
     </div>
@@ -114,7 +116,7 @@ const Footer = () => {
 
 function App() {
   return (
-    <div>
+    <div className="container">
       <Header />
       <Menu />
       <Footer />
