@@ -54,17 +54,38 @@ const Pizza = () => {
     </div>
   );
 };
+
+const Header = () => {
+  return (
+    <>
+      <h1>Fast React Pizza Co.</h1>
+    </>
+  );
+};
+
+const Menu = () => {
+  return (
+    <div>
+      <h2>Our Menu</h2>
+      <Pizza />
+    </div>
+  );
+};
+
+const Footer = () => {
+  return (
+    <div>
+      <footer> {new Date().toLocaleTimeString()} We Are Currently Open!</footer>
+    </div>
+  );
+};
+
 function App() {
   return (
     <div>
-      <h1> Shashwat Adhau </h1>
-      <Pizza />
-      <Pizza />
-      <Pizza />
-      <Pizza />
-      <Pizza />
-      <Pizza />
-      <Pizza />
+      <Header />
+      <Menu />
+      <Footer />
     </div>
   );
 }
