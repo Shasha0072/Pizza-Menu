@@ -1,5 +1,5 @@
 import "./App.css";
-
+import "./index.css";
 const pizzaData = [
   {
     name: "Focaccia",
@@ -45,13 +45,16 @@ const pizzaData = [
   },
 ];
 
-const Pizza = () => {
+const Pizza = (props) => {
   return (
-    <div>
-      <img src="pizzas/prosciutto.jpg" alt="Pizza Prosciutto" />
-      <h2>Pizza Prosciutto</h2>
-      <p>Tomato, mozarella, ham, aragula, and burrata cheese</p>
-    </div>
+    <li className="pizza">
+      <img src={props.photoName} alt={props.name} />
+      <div>
+        <h2>{props.name}</h2>
+        <p>{props.ingredient}</p>
+        <p>{props.price}</p>
+      </div>
+    </li>
   );
 };
 
@@ -64,18 +67,47 @@ const Header = () => {
 };
 
 const Menu = () => {
+  const pizzas = pizzaData;
+  // const pizzas = [];
+  const numPizzas = pizzas.length;
   return (
-    <div>
+    <main className="menu">
       <h2>Our Menu</h2>
-      <Pizza />
-    </div>
+      <ul className="pizzas">
+        {numPizzas > 0 ? (
+          pizzas.map((pizza) => (
+            <Pizza
+              name={pizza.name}
+              ingredient={pizza.ingredients}
+              photoName={pizza.photoName}
+              price={pizza.price}
+            />
+          ))
+        ) : (
+          <p>No Pizzas Available</p>
+        )}
+      </ul>
+    </main>
   );
 };
 
 const Footer = () => {
+  const hour = new Date().getHours();
+  const openHour = 12;
+  const closeHour = 22;
+  const isOpen = hour >= openHour && hour <= closeHour;
   return (
     <div>
-      <footer> {new Date().toLocaleTimeString()} We Are Currently Open!</footer>
+      <footer className="footer">
+        {isOpen ? (
+          <div className="order">
+            <p>We are open until {closeHour}</p>
+            <button className="btn">Order</button>
+          </div>
+        ) : (
+          <p>We are happy to welcome you between 12 and 22</p>
+        )}
+      </footer>
     </div>
   );
 };
